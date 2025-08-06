@@ -1,12 +1,16 @@
 import { ReservationStatus } from '../../../common/enums/reservation-status.enum';
 
 export class ReservationResponseDto {
-  id: string;
-  startTime: Date;
-  endTime: Date;
-  status: ReservationStatus;
-  userId: string;
-  spotId: string;
+  id!: string;
+  startTime!: Date;
+  endTime!: Date;
+  status!: ReservationStatus;
+  user?: {
+    id: string;
+    email: string;
+    firstName: string;
+    lastName: string;
+  };
   spot?: {
     id: string;
     spotNumber: string;
@@ -17,6 +21,6 @@ export class ReservationResponseDto {
       address: string;
     };
   };
-  createdAt: Date;
-  updatedAt: Date;
+  createdAt!: Date;
+  updatedAt!: Date;
 }

@@ -2,14 +2,14 @@ import { IsDateString, IsUUID } from 'class-validator';
 
 export class CreateReservationDto {
   @IsUUID()
-  spotId: string;
+  spotId!: string;
 
   @IsUUID()
-  userId: string;
+  userId!: string;
 
   @IsDateString()
-  startTime: string;
+  startTime!: string;
 
   @IsDateString()
-  endTime: string;
+  endTime!: string;
 }

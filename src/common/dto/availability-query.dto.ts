@@ -3,10 +3,10 @@ import { PaginationDto } from './pagination.dto';
 
 export class AvailabilityQueryDto extends PaginationDto {
   @IsDateString()
-  startTime: string;
+  startTime!: string;
 
   @IsDateString()
-  endTime: string;
+  endTime!: string;
 
   @IsOptional()
   @IsUUID()

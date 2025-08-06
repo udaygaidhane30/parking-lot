@@ -2,15 +2,15 @@ import { IsEmail, IsString, IsOptional, MinLength } from 'class-validator';
 
 export class CreateUserDto {
   @IsEmail()
-  email: string;
+  email!: string;
 
   @IsString()
   @MinLength(1)
-  firstName: string;
+  firstName!: string;
 
   @IsString()
   @MinLength(1)
-  lastName: string;
+  lastName!: string;
 
   @IsOptional()
   @IsString()

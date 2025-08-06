@@ -4,6 +4,8 @@ import { Spot } from '../spots/spot.model';
 @Table({
   tableName: 'parking_lots',
   timestamps: true,
+  createdAt: 'created_at',
+  updatedAt: 'updated_at',
 })
 export class ParkingLot extends Model<ParkingLot> {
   @PrimaryKey
@@ -11,53 +13,36 @@ export class ParkingLot extends Model<ParkingLot> {
     type: DataType.UUID,
     defaultValue: DataType.UUIDV4,
   })
-  id: string;
+  id!: string;
 
   @Column({
     type: DataType.STRING,
     allowNull: false,
   })
-  name: string;
+  name!: string;
 
   @Column({
     type: DataType.STRING,
     allowNull: false,
   })
-  address: string;
-
-  @Column({
-    type: DataType.DECIMAL(10, 8),
-    allowNull: true,
-  })
-  latitude: number;
-
-  @Column({
-    type: DataType.DECIMAL(11, 8),
-    allowNull: true,
-  })
-  longitude: number;
+  address!: string;
 
   @Column({
     type: DataType.TIME,
     allowNull: false,
     defaultValue: '00:00:00',
+    field: 'open_time',
   })
-  openTime: string;
+  openTime!: string;
 
   @Column({
     type: DataType.TIME,
     allowNull: false,
     defaultValue: '23:59:59',
+    field: 'close_time',
   })
-  closeTime: string;
-
-  @Column({
-    type: DataType.INTEGER,
-    allowNull: false,
-    defaultValue: 0,
-  })
-  totalSpots: number;
+  closeTime!: string;
 
   @HasMany(() => Spot)
-  spots: Spot[];
+  spots!: Spot[];
 }

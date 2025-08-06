@@ -6,6 +6,8 @@ import { SpotType } from '../../common/enums/spot-type.enum';
 @Table({
   tableName: 'spots',
   timestamps: true,
+  createdAt: 'created_at',
+  updatedAt: 'updated_at',
   indexes: [
     {
       fields: ['parkingLotId', 'spotNumber'],
@@ -22,38 +24,41 @@ export class Spot extends Model<Spot> {
     type: DataType.UUID,
     defaultValue: DataType.UUIDV4,
   })
-  id: string;
+  id!: string;
 
   @Column({
     type: DataType.STRING,
     allowNull: false,
+    field: 'spot_number',
   })
-  spotNumber: string;
+  spotNumber!: string;
 
   @Column({
     type: DataType.ENUM(...Object.values(SpotType)),
     allowNull: false,
     defaultValue: SpotType.REGULAR,
   })
-  type: SpotType;
+  type!: SpotType;
 
   @Column({
     type: DataType.BOOLEAN,
     allowNull: false,
     defaultValue: true,
+    field: 'is_active',
   })
-  isActive: boolean;
+  isActive!: boolean;
 
   @ForeignKey(() => ParkingLot)
   @Column({
     type: DataType.UUID,
     allowNull: false,
+    field: 'parking_lot_id',
   })
-  parkingLotId: string;
+  parkingLotId!: string;
 
   @BelongsTo(() => ParkingLot)
-  parkingLot: ParkingLot;
+  parkingLot!: ParkingLot;
 
   @HasMany(() => Reservation)
-  reservations: Reservation[];
+  reservations!: Reservation[];
 }

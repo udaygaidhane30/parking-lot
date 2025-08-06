@@ -17,4 +17,9 @@ export class ReservationsController {
   async cancel(@Param('id') id: string): Promise<void> {
     return this.reservationsService.cancel(id);
   }
+
+  @Get('user/:userId/upcoming')
+  async getUpcomingByUser(@Param('userId') userId: string): Promise<ReservationResponseDto[]> {
+    return this.reservationsService.findUpcomingByUser(userId);
+  }
 }

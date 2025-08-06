@@ -4,6 +4,8 @@ import { Reservation } from '../reservations/reservation.model';
 @Table({
   tableName: 'users',
   timestamps: true,
+  createdAt: 'created_at',
+  updatedAt: 'updated_at',
 })
 export class User extends Model<User> {
   @PrimaryKey
@@ -11,32 +13,34 @@ export class User extends Model<User> {
     type: DataType.UUID,
     defaultValue: DataType.UUIDV4,
   })
-  id: string;
+  id!: string;
 
   @Column({
     type: DataType.STRING,
     allowNull: false,
   })
-  email: string;
+  email!: string;
 
   @Column({
     type: DataType.STRING,
     allowNull: false,
+    field: 'first_name',
   })
-  firstName: string;
+  firstName!: string;
 
   @Column({
     type: DataType.STRING,
     allowNull: false,
+    field: 'last_name',
   })
-  lastName: string;
+  lastName!: string;
 
   @Column({
     type: DataType.STRING,
     allowNull: true,
   })
-  phone: string;
+  phone!: string | null;
 
   @HasMany(() => Reservation)
-  reservations: Reservation[];
+  reservations!: Reservation[];
 }
