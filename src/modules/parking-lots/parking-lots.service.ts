@@ -10,6 +10,8 @@ export class ParkingLotsService {
   constructor(
     @InjectModel(ParkingLot)
     private parkingLotModel: typeof ParkingLot,
+    @InjectModel(Spot)
+    private spotModel: typeof Spot,
   ) {}
 
   async findAll(paginationDto: PaginationDto): Promise<ParkingLotResponseDto[]> {
@@ -77,7 +79,7 @@ export class ParkingLotsService {
       throw new NotFoundException(`Parking lot with ID ${id} not found`);
     }
 
-    const spots = await Spot.findAll({
+    const spots = await this.spotModel.findAll({
       where: { parkingLotId: id },
       limit,
       offset,

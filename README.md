@@ -42,7 +42,7 @@ A backend API server for managing parking lot reservations built with NestJS, Po
 
 3. **Start the application with Docker Compose**:
    ```bash
-   docker-compose up --build
+   docker-compose up --build -d
    ```
 
 4. **Run database migrations and seeders** (Required for fresh setup):
@@ -50,6 +50,15 @@ A backend API server for managing parking lot reservations built with NestJS, Po
    # Wait for containers to be ready, then run:
    docker-compose exec app npm run db:migrate
    docker-compose exec app npm run db:seed
+   ```
+
+5. **Verify the application is running**:
+   ```bash
+   # Check container status
+   docker-compose ps
+   
+   # Test the API
+   curl http://localhost:3000/parking-lots
    ```
 
 This will start:

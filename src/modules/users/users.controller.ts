@@ -13,16 +13,16 @@ export class UsersController {
     return this.usersService.create(createUserDto);
   }
 
-  @Get(':id')
-  async findOne(@Param('id') id: string) {
-    return this.usersService.findById(id);
-  }
-
   @Get(':id/reservations')
   async getReservations(
     @Param('id') id: string,
     @Query() paginationDto: PaginationDto,
   ): Promise<ReservationResponseDto[]> {
     return this.usersService.getUpcomingReservations(id, paginationDto);
+  }
+
+  @Get('details/:id')
+  findUserById(@Param('id') id: string) {
+    return this.usersService.findById(id);
   }
 }
